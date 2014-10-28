@@ -37,13 +37,13 @@ used to perform an automated installation. The new image will be named
 
 Optional switches:
   -u <user>
-    Sets the username of the root user, defaults to 'vagrant'.
+    Sets the username of the root user, defaults to 'travis'.
 
   -p <password>
-    Sets the password of the root user, defaults to 'vagrant'.
+    Sets the password of the root user, defaults to 'travis'.
 
   -i <path to image>
-    Sets the path of the avatar image for the root user, defaulting to the vagrant icon.
+    Sets the path of the avatar image for the root user, defaulting to the travis icon.
 
 EOF
 }
@@ -68,9 +68,9 @@ SCRIPT_DIR="$(cd $(dirname "$0"); pwd)"
 SUPPORT_DIR="$SCRIPT_DIR/support"
 
 # Parse the optional command line switches
-USER="vagrant"
-PASSWORD="vagrant"
-IMAGE_PATH="$SUPPORT_DIR/vagrant.jpg"
+USER="travis"
+PASSWORD="travis"
+IMAGE_PATH="$SUPPORT_DIR/travis.png"
 
 while getopts u:p:i: OPT; do
   case "$OPT" in

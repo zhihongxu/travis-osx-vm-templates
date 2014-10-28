@@ -1,5 +1,7 @@
 #!/bin/sh
- 
+
+set -eo pipefail
+
 # Get and install Xcode CLI tools
 OSX_VERS=$(sw_vers -productVersion | awk -F "." '{print $2}')
  

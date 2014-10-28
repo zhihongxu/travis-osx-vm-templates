@@ -1,6 +1,7 @@
 {
   "builders": [
     {
+      "vm_name": "{{user `vm_name`}}",
       "boot_wait": "5s",
       "disk_size": 40960,
       "guest_os_type": "win-8",
@@ -16,7 +17,6 @@
       "type": "parallels-iso",
       "prlctl": [
         ["set", "{{.Name}}", "--memsize", "2048"],
-        ["set", "{{.Name}}", "--memquota", "512:2048"],
         ["set", "{{.Name}}", "--cpus", "2"],
         ["set", "{{.Name}}", "--distribution", "macosx"],
         ["set", "{{.Name}}", "--3d-accelerate", "highest"],
@@ -24,11 +24,39 @@
         ["set", "{{.Name}}", "--auto-share-camera", "off"],
         ["set", "{{.Name}}", "--auto-share-bluetooth", "off"],
         ["set", "{{.Name}}", "--on-window-close", "keep-running"],
+        ["set", "{{.Name}}", "--on-shutdown", "quit"],
         ["set", "{{.Name}}", "--isolate-vm", "on"],
-        ["set", "{{.Name}}", "--shf-host", "off"]
+        ["set", "{{.Name}}", "--shf-host", "off"],
+        ["set", "{{.Name}}", "--tools-autoupdate", "off"]
       ]
     },
     {
+      "vm_name": "{{user `vm_name`}}",
+      "boot_wait": "5s",
+      "source_path": "osx-base.pvm",
+      "shutdown_command": "echo '{{user `username`}}'|sudo -S shutdown -h now",
+      "ssh_port": 22,
+      "ssh_username": "{{user `username`}}",
+      "ssh_password": "{{user `password`}}",
+      "ssh_wait_timeout": "10000s",
+      "parallels_tools_flavor": "mac",
+      "type": "parallels-pvm",
+      "prlctl": [
+        ["set", "{{.Name}}", "--memsize", "2048"],
+        ["set", "{{.Name}}", "--cpus", "2"],
+        ["set", "{{.Name}}", "--3d-accelerate", "highest"],
+        ["set", "{{.Name}}", "--high-resolution", "off"],
+        ["set", "{{.Name}}", "--auto-share-camera", "off"],
+        ["set", "{{.Name}}", "--auto-share-bluetooth", "off"],
+        ["set", "{{.Name}}", "--on-window-close", "keep-running"],
+        ["set", "{{.Name}}", "--on-shutdown", "quit"],
+        ["set", "{{.Name}}", "--isolate-vm", "on"],
+        ["set", "{{.Name}}", "--shf-host", "off"],
+        ["set", "{{.Name}}", "--tools-autoupdate", "off"]
+      ]
+    },
+    {
+      "vm_name": "{{user `vm_name`}}",
       "boot_wait": "2s",
       "disk_size": 20480,
       "guest_os_type": "darwin12-64",
@@ -57,6 +85,7 @@
       }
     },
     {
+      "vm_name": "{{user `vm_name`}}",
       "boot_wait": "2s",
       "disk_size": 20480,
       "guest_additions_mode": "disable",
@@ -89,19 +118,40 @@
   ],
   "min_packer_version": "0.7.0",
   "post-processors": [
-    "vagrant"
+    [{
+      "type": "compress",
+      "keep_input_artifact": true,
+      "output": "{{user `vm_name`}}.tar.gz"
+    }]
   ],
   "provisioners": [
+    {
+      "destination": "/Users/travis/customsshd",
+      "source": "../scripts/support/customsshd",
+      "type": "file"
+    },
+    {
+      "destination": "/private/tmp/packages",
+      "source": "../packages-{{user `vm_name`}}",
+      "type": "file"
+    },
     {
       "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
       "scripts": [
         "../scripts/vagrant.sh",
         "../scripts/vmware.sh",
         "../scripts/parallels.sh",
+        "../scripts/install-updates.sh",
         "../scripts/xcode-cli-tools.sh",
+        "../scripts/packages.sh",
+        "../scripts/xcode.sh",
+        "../scripts/devtools-enable.sh",
         "../scripts/chef-omnibus.sh",
-        "../scripts/puppet.sh",
-        "../scripts/add-network-interface-detection.sh"
+        "../scripts/add-network-interface-detection.sh",
+        "../scripts/rvm.sh",
+        "../scripts/brew.sh",
+        "../scripts/travis-chef.sh",
+        "../scripts/customsshd.sh"
       ],
       "environment_vars": [
         "INSTALL_VAGRANT_KEYS={{user `install_vagrant_keys`}}",
@@ -126,11 +176,12 @@
     }
   ],
   "variables": {
-    "iso_checksum": "aff67f81dfbad7afda56c423473d61a6",
-    "iso_url": "OSX_InstallESD_10.9.3_13D65.dmg",
-    "username": "vagrant",
-    "password": "vagrant",
-    "autologin": false,
+    "vm_name": "osx-xcode-6.1",
+    "iso_checksum": "395f547ed8a1476b5ca4dd34420b1070",
+    "iso_url": "../out/OSX_InstallESD_10.10.1_14B25.dmg",
+    "username": "travis",
+    "password": "travis",
+    "autologin": true,
     "install_vagrant_keys": true
   }
 }
