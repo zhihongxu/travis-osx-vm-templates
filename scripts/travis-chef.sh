@@ -30,7 +30,7 @@ cat <<EOF > solo.json
   },
   "rvm": {
     "default": "2.0.0",
-    "rubies": [ {"name": "2.0.0"}, {"name": "2.1"}, {"name": "1.9.3"} ],
+    "rubies": [ {"name": "2.0.0"}, {"name": "2.1"} ],
     "gems": [ "bundler", "rake", "cocoapods", "xcpretty" ]
   },
   "java": {
