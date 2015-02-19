@@ -36,9 +36,13 @@ Download Xcode 6.0 from http://adcdownload.apple.com/Developer_Tools/xcode_6.0.1
 
 Download Xcode 6.1 from http://adcdownload.apple.com/Developer_Tools/xcode_6.1.1/xcode_6.1.1.dmg and put it into `packages-osx-xcode-6.1/`.
 
-### Xcode 6.2 (beta3)
+### Xcode 6.2 (beta5)
 
-Download Xcode 6.1 from http://adcdownload.apple.com//Developer_Tools/xcode_6.2_beta_3_y9ikvy/xcode_6.2_beta_3.dmg and put it into `packages-osx-xcode-6.1/`.
+Download Xcode 6.2 from http://adcdownload.apple.com//Developer_Tools/Xcode_6.2_beta_5/Xcode_6.2_beta_5.dmg and put it into `packages-osx-xcode-6.2/`.
+
+### Xcode 6.3 (beta)
+
+Download Xcode 6.3 from http://adcdownload.apple.com//Developer_Tools/Xcode_6.3_beta/Xcode_6.3_beta.dmg and put it into `packages-osx-xcode-6.3/`.
 
 ## Preparing the ISO
 
