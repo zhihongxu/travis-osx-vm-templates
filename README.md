@@ -92,7 +92,7 @@ packer build \
 
 ## Supported guest OS versions
 
-Currently the prepare script supports Mavericks (and it should Yosemite).
+Currently the prepare script supports Mavericks and Yosemite.
 
 ## License
 

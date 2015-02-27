@@ -136,18 +136,24 @@
       "type": "file"
     },
     {
+      "destination": "/private/tmp/set_kcpassword.py",
+      "source": "../scripts/support/set_kcpassword.py",
+      "type": "file"
+    },
+    {
       "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
       "scripts": [
         "../scripts/vagrant.sh",
         "../scripts/vmware.sh",
         "../scripts/parallels.sh",
-        "../scripts/install-updates.sh",
+        "../scripts/system-update.sh",
         "../scripts/xcode-cli-tools.sh",
         "../scripts/packages.sh",
         "../scripts/xcode.sh",
         "../scripts/devtools-enable.sh",
         "../scripts/chef-omnibus.sh",
         "../scripts/add-network-interface-detection.sh",
+        "../scripts/autologin.sh",
         "../scripts/rvm.sh",
         "../scripts/brew.sh",
         "../scripts/travis-chef.sh",
@@ -157,22 +163,11 @@
       ],
       "environment_vars": [
         "INSTALL_VAGRANT_KEYS={{user `install_vagrant_keys`}}",
-        "USERNAME={{user `username`}}"
-      ],
-      "type": "shell"
-    },
-    {
-      "destination": "/private/tmp/set_kcpassword.py",
-      "source": "../scripts/support/set_kcpassword.py",
-      "type": "file"
-    },
-    {
-      "execute_command": "chmod +x {{ .Path }}; sudo {{ .Vars }} {{ .Path }}",
-      "inline": [
-        "if [ \"{{user `autologin`}}\" != \"true\" ] && [ \"{{user `autologin`}}\" != \"1\" ]; then exit; fi",
-        "echo \"Enabling automatic GUI login for the '{{user `username`}}' user..\"",
-        "python /private/tmp/set_kcpassword.py \"{{user `password`}}\"",
-        "/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser \"{{user `username`}}\""
+        "USERNAME={{user `username`}}",
+        "PASSWORD={{user `password`}}",
+        "AUTOLOGIN={{user `autologin`}}",
+        "UPDATE_SYSTEM={{user `update_system`}}",
+        "DISABLE_AUTOUPDATES={{user `disable_autoupdates`}}"
       ],
       "type": "shell"
     }
@@ -184,6 +179,8 @@
     "username": "travis",
     "password": "travis",
     "autologin": true,
-    "install_vagrant_keys": true
+    "install_vagrant_keys": true,
+    "update_system": true,
+    "disable_autoupdates": true
   }
 }
