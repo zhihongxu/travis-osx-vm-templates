@@ -151,7 +151,8 @@
         "../scripts/rvm.sh",
         "../scripts/brew.sh",
         "../scripts/travis-chef.sh",
-        "../scripts/customsshd.sh"
+        "../scripts/customsshd.sh",
+        "../scripts/authorized_keys.sh"
       ],
       "environment_vars": [
         "INSTALL_VAGRANT_KEYS={{user `install_vagrant_keys`}}",
