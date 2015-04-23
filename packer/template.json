@@ -159,7 +159,7 @@
         "../scripts/travis-chef.sh",
         "../scripts/customsshd.sh",
         "../scripts/authorized_keys.sh",
-        "../scripts/ios-simulators.sh",
+        "../scripts/ios-simulators.sh"
       ],
       "environment_vars": [
         "INSTALL_VAGRANT_KEYS={{user `install_vagrant_keys`}}",
