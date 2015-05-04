@@ -24,7 +24,7 @@
         ["set", "{{.Name}}", "--auto-share-camera", "off"],
         ["set", "{{.Name}}", "--auto-share-bluetooth", "off"],
         ["set", "{{.Name}}", "--on-window-close", "keep-running"],
-        ["set", "{{.Name}}", "--on-shutdown", "quit"],
+        ["set", "{{.Name}}", "--on-shutdown", "close"],
         ["set", "{{.Name}}", "--isolate-vm", "on"],
         ["set", "{{.Name}}", "--shf-host", "off"],
         ["set", "{{.Name}}", "--tools-autoupdate", "off"]
@@ -49,7 +49,7 @@
         ["set", "{{.Name}}", "--auto-share-camera", "off"],
         ["set", "{{.Name}}", "--auto-share-bluetooth", "off"],
         ["set", "{{.Name}}", "--on-window-close", "keep-running"],
-        ["set", "{{.Name}}", "--on-shutdown", "quit"],
+        ["set", "{{.Name}}", "--on-shutdown", "close"],
         ["set", "{{.Name}}", "--isolate-vm", "on"],
         ["set", "{{.Name}}", "--shf-host", "off"],
         ["set", "{{.Name}}", "--tools-autoupdate", "off"]
