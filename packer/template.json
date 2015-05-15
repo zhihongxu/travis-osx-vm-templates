@@ -126,7 +126,7 @@
   ],
   "provisioners": [
     {
-      "destination": "/Users/travis/customsshd",
+      "destination": "/Users/iosadmin/customsshd",
       "source": "../scripts/support/customsshd",
       "type": "file"
     },
