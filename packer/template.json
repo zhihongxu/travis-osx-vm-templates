@@ -173,11 +173,11 @@
     }
   ],
   "variables": {
-    "vm_name": "osx-xcode-6.1",
-    "iso_checksum": "395f547ed8a1476b5ca4dd34420b1070",
-    "iso_url": "../out/OSX_InstallESD_10.10.1_14B25.dmg",
-    "username": "travis",
-    "password": "travis",
+    "vm_name": "osx-xcode-6.3",
+    "iso_checksum": "81ae77a90d4bff062f31175dc1b47d9c",
+    "iso_url": "../out/OSX_InstallESD_10.10.3_14D136.dmg",
+    "username": "iosadmin",
+    "password": "Test1234",
     "autologin": true,
     "install_vagrant_keys": true,
     "update_system": true,
